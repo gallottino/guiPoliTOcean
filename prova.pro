@@ -29,10 +29,13 @@ unix {
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        ipcamera.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+        flycapture/FlyCapture2.h \
+        ipcamera.h
 
 FORMS += \
         mainwindow.ui

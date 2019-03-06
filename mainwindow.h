@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <iostream>
 #include <opencv2/opencv.hpp>
-
+#include "ipcamera.h"
 
 using namespace cv;
 
@@ -20,7 +20,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     QImage imdisplay;  //This will create QImage which is shown in Qt label
     QTimer* Timer;   // A timer is needed in GUI application
+    //IpCamera cam;
     VideoCapture cap;
+
     ~MainWindow();
 
 public slots:    // A slot or function is defined which will be intiated by timer
