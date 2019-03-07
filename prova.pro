@@ -30,12 +30,14 @@ unix {
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-        ipcamera.cpp
+        ipcamera.cpp \
+    vision.cpp
 
 HEADERS += \
         mainwindow.h \
         flycapture/FlyCapture2.h \
-        ipcamera.h
+        ipcamera.h \
+    vision.h
 
 FORMS += \
         mainwindow.ui

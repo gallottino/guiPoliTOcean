@@ -1,17 +1,25 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QTimer>
+#include "vision.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     cap.open(0);
+
+    //INIT PRIVATE VARIABLE
+    video = false;
+
+    /*TIMER DISPLAY CAMERAS*/
     Timer = new QTimer(this);
     connect(Timer, SIGNAL(timeout()), this, SLOT(DisplayImage()));
     Timer->start(33);
+
+    /*CONNECTION BUTTONS*/
+    connect(ui->startVideo,SIGNAL(clicked()),SLOT(setVideoStart()));
 }
 
 MainWindow::~MainWindow()
@@ -22,26 +30,29 @@ MainWindow::~MainWindow()
 
 void MainWindow::DisplayImage(){
 
-    Mat img,img_hls,redOnly,res,laplace;
-    cap >> img;
+    Mat img_hls,res;
+    if(video){
 
-    cv::cvtColor(img,img_hls,CV_BGR2HLS);
-    //cv::cvtColor(img,img,CV_BGR2RGB);
+        cap >> img;
+        //img = cam.getFrame();
+        cv::cvtColor(img,img_hls,CV_BGR2HLS);
+        res = Vision::filterRed(img_hls);
+
+        QImage cam1((uchar*)res.data, res.cols, res.rows, res.step, QImage::Format_RGB888);
+        ui->display_image->setPixmap(QPixmap::fromImage(cam1));
+
+        //QImage cam2((uchar*)img.data, img.cols, img.rows, img.step, QImage::Format_RGB888);
+        //ui->display_image_2->setPixmap(QPixmap::fromImage(cam2));
+    }
+    else
+    {
+
+    }
+}
 
 
-    //RED RECOGNIZE
-    inRange(img_hls, Scalar(150, 20, 10), Scalar(180, 255, 255), redOnly);
-    img.copyTo(res,redOnly);
-    
-    //CHECK BORDER
-//    Laplacian(img,laplace,CV_16S,5);
-//    convertScaleAbs(laplace, res, (3+1)*0.25);
-
-    //img = cam.getFrame();
-    QImage cam1((uchar*)res.data, res.cols, res.rows, res.step, QImage::Format_RGB888);
-    //QImage cam2((uchar*)img.data, img.cols, img.rows, img.step, QImage::Format_RGB888);
-    ui->display_image->setPixmap(QPixmap::fromImage(cam1));
-    //ui->display_image_2->setPixmap(QPixmap::fromImage(cam2));
-
+void MainWindow::setVideoStart()
+{
+    video = !video;
 }
 

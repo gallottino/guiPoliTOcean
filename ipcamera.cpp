@@ -16,14 +16,15 @@ IpCamera::IpCamera()
     camera.StartCapture();
 }
 
+
 Mat IpCamera::getFrame()
 {
     Image raw;
     camera.RetrieveBuffer(&raw);
 
-    printf("Frames lost: %d \n", lost);
+    printf("Frames lost: \n");
     Image rgb;
-    raw.Convert( FlyCapture2::PIXEL_FORMAT_BGR, &rgb );
+    raw.Convert( FlyCapture2::PIXEL_FORMAT_RGB, &rgb );
 
     unsigned int row = (double)rgb.GetReceivedDataSize()/(double)rgb.GetRows();
 
