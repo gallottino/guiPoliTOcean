@@ -15,11 +15,14 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton{
-	background-color: #69779b;
-	color: #212121;
+background-color:white;
+border-style: solid;
+
+border-width: 1px;
+border-radius: 7px;
 }
 QMainWindow{
-	background-color: #212121;
+	background-color: #37474f;
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -29,11 +32,17 @@ QMainWindow{
    <widget class="QLabel" name="display_image">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>0</x>
       <y>0</y>
       <width>640</width>
       <height>480</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: solid;
+border-color: #00838f ;
+border-width: 3px;
+</string>
     </property>
     <property name="text">
      <string/>
@@ -48,6 +57,11 @@ QMainWindow{
       <height>480</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: solid;
+border-color: #00838f ;
+border-width: 3px;</string>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -55,44 +69,289 @@ QMainWindow{
    <widget class="QPushButton" name="startVideo">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>610</y>
-      <width>101</width>
-      <height>51</height>
+      <x>10</x>
+      <y>630</y>
+      <width>191</width>
+      <height>54</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#eeeeee;
+color: black;
+border-color: white;</string>
     </property>
     <property name="text">
      <string>Start Video</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="startVideo_2">
+   <widget class="QPushButton" name="joystick_status">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>610</y>
-      <width>101</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Auto</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>239</x>
-      <y>509</y>
-      <width>1051</width>
-      <height>151</height>
+      <x>10</x>
+      <y>510</y>
+      <width>96</width>
+      <height>96</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #69779b;;</string>
+     <string notr="true">QPushButton
+{
+	background-color: #64dd17; 
+
+}</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="joystick_status_2">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>510</y>
+      <width>96</width>
+      <height>96</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: #c62828;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gradient">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>520</y>
+      <width>95</width>
+      <height>92</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0.784, x2:0, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(55, 71, 76, 255));
+
+border-width: 1px;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gradient_2">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>520</y>
+      <width>95</width>
+      <height>92</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0.784, x2:0, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(55, 71, 79, 255));
+
+border-width: 1px;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="error_video">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>40</y>
+      <width>400</width>
+      <height>400</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0,0,0,0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="error_video_2">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>40</y>
+      <width>400</width>
+      <height>400</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0,0,0,0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gradient_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>630</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0.784, x2:0, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(55, 71, 76, 255));
+
+border-width: 1px;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="auto_drive">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>510</y>
+      <width>194</width>
+      <height>174</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: #00838f ; 
+
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="shapes_recognize">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>510</y>
+      <width>194</width>
+      <height>174</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: #00838f ; 
+
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gradient_4">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>630</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0.784, x2:0, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(55, 71, 76, 255));
+
+border-width: 1px;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gradient_5">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>630</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0.784, x2:0, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(55, 71, 76, 255));
+
+border-width: 1px;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gradient_6">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>630</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(spread:pad, x1:0, y1:0.784, x2:0, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(55, 71, 76, 255));
+
+border-width: 1px;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="home">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>510</y>
+      <width>194</width>
+      <height>174</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: #00838f ; 
+
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>display_image</zorder>
+   <zorder>display_image_2</zorder>
+   <zorder>gradient</zorder>
+   <zorder>joystick_status</zorder>
+   <zorder>gradient_2</zorder>
+   <zorder>joystick_status_2</zorder>
+   <zorder>error_video</zorder>
+   <zorder>error_video_2</zorder>
+   <zorder>gradient_3</zorder>
+   <zorder>startVideo</zorder>
+   <zorder>gradient_4</zorder>
+   <zorder>gradient_5</zorder>
+   <zorder>shapes_recognize</zorder>
+   <zorder>auto_drive</zorder>
+   <zorder>gradient_6</zorder>
+   <zorder>home</zorder>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

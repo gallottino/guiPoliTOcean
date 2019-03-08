@@ -10,6 +10,7 @@ class IpCamera
 {
 public:
     IpCamera();
+    ~IpCamera();
     Mat getFrame();
     Camera camera;
     CameraInfo camInfo;

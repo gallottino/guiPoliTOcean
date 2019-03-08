@@ -43,4 +43,5 @@ FORMS += \
         mainwindow.ui
 
 DISTFILES += \
-    green.png
+    green.png \
+    gamepad-solid.svg

@@ -1,6 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+
+enum MODE{
+    MODE_HOME,
+    MODE_AUTO,
+    MODE_SHAPES
+};
+
 #include <QMainWindow>
 #include <iostream>
 #include <opencv2/opencv.hpp>
@@ -28,11 +35,17 @@ public:
 public slots:    // A slot or function is defined which will be intiated by timer
     void DisplayImage();
     void setVideoStart();
+    void modeAuto();
+    void modeShapes();
+    void modeHome();
 
 private:
-    Ui::MainWindow *ui;
-    Mat img;
     bool video;
+    Ui::MainWindow *ui;
+    Mat img;   
+    QIcon icon,icon2,video_icon,auto_icon,shapes_icon,home_icon;
+    QIcon auto_icon_w,shapes_icon_w,home_icon_w;
+    MODE mode = MODE_HOME;
 };
 
 #endif // MAINWINDOW_H

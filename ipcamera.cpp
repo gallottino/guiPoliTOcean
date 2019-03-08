@@ -16,6 +16,12 @@ IpCamera::IpCamera()
     camera.StartCapture();
 }
 
+IpCamera::~IpCamera()
+{
+    camera.StopCapture();
+    camera.Disconnect();
+
+}
 
 Mat IpCamera::getFrame()
 {
