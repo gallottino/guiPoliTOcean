@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1300</width>
-    <height>800</height>
+    <height>823</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -110,7 +110,7 @@ border-color: white;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="joystick_status_2">
+   <widget class="QPushButton" name="atMega_status">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -340,7 +340,7 @@ border-radius: 10px;</string>
    <zorder>gradient</zorder>
    <zorder>joystick_status</zorder>
    <zorder>gradient_2</zorder>
-   <zorder>joystick_status_2</zorder>
+   <zorder>atMega_status</zorder>
    <zorder>error_video</zorder>
    <zorder>error_video_2</zorder>
    <zorder>gradient_3</zorder>

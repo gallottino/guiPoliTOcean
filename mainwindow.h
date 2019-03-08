@@ -11,7 +11,7 @@ enum MODE{
 #include <QMainWindow>
 #include <iostream>
 #include <opencv2/opencv.hpp>
-#include "ipcamera.h"
+//#include "ipcamera.h"
 
 using namespace cv;
 
@@ -27,7 +27,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     QImage imdisplay;  //This will create QImage which is shown in Qt label
     QTimer* Timer;   // A timer is needed in GUI application
-    IpCamera cam;
+    //IpCamera cam;
     VideoCapture cap;
 
     ~MainWindow();

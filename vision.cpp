@@ -86,7 +86,7 @@ Mat Vision::filterRed(Mat src)
     //GaussianBlur(src, blur, Size( 3, 3 ), 0, 0 );
 
     //COLOR RED IN HSL (N.B in openCV is HLS
-    inRange(src, Scalar(160, 0, 0), Scalar(180, 200, 200), redOnly);
+    inRange(src, Scalar(160, 20, 40), Scalar(180, 255, 200), redOnly);
     src.copyTo(res,redOnly);
 
     return res;

@@ -33,30 +33,23 @@ MainWindow::MainWindow(QWidget *parent) :
     auto_icon.addFile(QString::fromUtf8("images/robot-solid.png"), QSize(), QIcon::Normal, QIcon::Off);
     shapes_icon.addFile(QString::fromUtf8("images/shapes-solid.png"), QSize(), QIcon::Normal, QIcon::Off);
     home_icon.addFile(QString::fromUtf8("images/home.png"), QSize(), QIcon::Normal, QIcon::Off);
-
     auto_icon_w.addFile(QString::fromUtf8("images/robot-solid_w.png"), QSize(), QIcon::Normal, QIcon::Off);
     shapes_icon_w.addFile(QString::fromUtf8("images/shapes-solid_w.png"), QSize(), QIcon::Normal, QIcon::Off);
     home_icon_w.addFile(QString::fromUtf8("images/home_w.png"), QSize(), QIcon::Normal, QIcon::Off);
 
     //SET ICON
-    ui->joystick_status_2->setIcon(icon);
-    ui->joystick_status_2->setIconSize(QSize(60, 60));
-
+    ui->atMega_status->setIcon(icon);
+    ui->atMega_status->setIconSize(QSize(60, 60));
     ui->joystick_status->setIcon(icon2);
     ui->joystick_status->setIconSize(QSize(60, 60));
-
     ui->error_video->setIcon(video_icon);
     ui->error_video->setIconSize(QSize(400,400));
-
     ui->error_video_2->setIcon(video_icon);
     ui->error_video_2->setIconSize(QSize(400,400));
-
     ui->auto_drive->setIcon(auto_icon);
     ui->auto_drive->setIconSize(QSize(100,100));
-
     ui->shapes_recognize->setIcon(shapes_icon);
     ui->shapes_recognize->setIconSize(QSize(100,100));
-
     ui->home->setIcon(home_icon_w);
     ui->home->setIconSize(QSize(100,100));
 
@@ -75,22 +68,17 @@ void MainWindow::DisplayImage(){
     if(video){
         cap >> img;
         //img = cam.getFrame();
-        cv::cvtColor(img,img_hsv,CV_BGR2HSV);
+        cv::cvtColor(img,img_hsv,CV_BGR2HLS);
         cv::cvtColor(img,img,CV_BGR2RGB);
 
-        res = Vision::filterRed(img_hsv);
-
-        //PROVA
-        //cvtColor( img, src_gray, COLOR_BGR2GRAY );
-        //blur( src_gray, src_gray, Size(3,3) );
-
-//        createTrackbar( " Canny thresh:", "Source", &thresh, max_thresh, thresh_callback );
-//        thresh_callback( 0, 0 );
-
-        QImage cam1((uchar*)res.data, res.cols, res.rows, res.step, QImage::Format_RGB888);
+        QImage cam1((uchar*)img.data, img.cols, img.rows, img.step, QImage::Format_RGB888);
         ui->display_image->setPixmap(QPixmap::fromImage(cam1));
-        QImage cam2((uchar*)img.data, img.cols, img.rows, img.step, QImage::Format_RGB888);
-        ui->display_image_2->setPixmap(QPixmap::fromImage(cam2));
+
+        if(mode == MODE_HOME){
+            res = Vision::filterRed(img_hsv);
+            QImage cam2((uchar*)res.data, res.cols, res.rows, res.step, QImage::Format_RGB888);
+            ui->display_image_2->setPixmap(QPixmap::fromImage(cam2));
+        }
     }
 }
 
@@ -121,6 +109,7 @@ void MainWindow::modeAuto()
     ui->shapes_recognize->setIcon(shapes_icon);
     ui->shapes_recognize->setIconSize(QSize(100,100));
 
+    ui->display_image_2->setVisible(false);
 }
 
 void MainWindow::modeShapes()
@@ -134,6 +123,7 @@ void MainWindow::modeShapes()
     ui->home->setIcon(home_icon);
     ui->home->setIconSize(QSize(100,100));
 
+    ui->display_image_2->setVisible(false);
 }
 void MainWindow::modeHome()
 {
@@ -146,5 +136,6 @@ void MainWindow::modeHome()
     ui->auto_drive->setIcon(auto_icon);
     ui->auto_drive->setIconSize(QSize(100,100));
 
+    ui->display_image_2->setVisible(true);
 
 }
