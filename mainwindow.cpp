@@ -4,6 +4,7 @@
 #include "vision.h"
 #include <iostream>
 
+using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -64,21 +65,32 @@ MainWindow::~MainWindow()
 
 void MainWindow::DisplayImage(){
 
-    Mat img_hsv,res;
+    Mat img_hls,res,frame;
     if(video){
-        cap >> img;
+        cap >> frame;
         //img = cam.getFrame();
-        cv::cvtColor(img,img_hsv,CV_BGR2HLS);
-        cv::cvtColor(img,img,CV_BGR2RGB);
+        img = frame;
 
+        //img = imread("prova2.png");
+        cvtColor(img,img_hls,CV_BGR2HLS);
+        cvtColor(img,img,CV_BGR2RGB);
+
+//        if(Vision::isCentered(img_hls)){
+//            cout<<"SONO AL CENTRO"<<endl;
+//            Vision::getLenghtFromBlack(Vision::filterBlack(img_hls),Vision::filterBlue(img_hls));
+//        }
+
+        img = Vision::addROI(img);
         QImage cam1((uchar*)img.data, img.cols, img.rows, img.step, QImage::Format_RGB888);
         ui->display_image->setPixmap(QPixmap::fromImage(cam1));
 
         if(mode == MODE_HOME){
-            res = Vision::filterRed(img_hsv);
-            QImage cam2((uchar*)res.data, res.cols, res.rows, res.step, QImage::Format_RGB888);
+            res = Vision::filterRed(img_hls);
+            QImage cam2((uchar*)res.data, res.cols, res.rows, res.step, QImage::Format_Grayscale8);
             ui->display_image_2->setPixmap(QPixmap::fromImage(cam2));
         }
+
+        Vision::getLenghtFromCenter(img_hls);
     }
 }
 
