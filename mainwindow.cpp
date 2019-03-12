@@ -85,7 +85,7 @@ void MainWindow::DisplayImage(){
         ui->display_image->setPixmap(QPixmap::fromImage(cam1));
 
         if(mode == MODE_HOME){
-            res = Vision::filterRed(img_hls);
+            res = Vision::filterBlue(img_hls);
             QImage cam2((uchar*)res.data, res.cols, res.rows, res.step, QImage::Format_Grayscale8);
             ui->display_image_2->setPixmap(QPixmap::fromImage(cam2));
         }

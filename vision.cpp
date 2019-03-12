@@ -110,7 +110,9 @@ Mat Vision::filterRed(Mat src)
 
 Mat Vision::filterBlue(Mat src)
 {
-    Mat res,blueOnly;
+    Mat res,blueOnly,canny_output;
+
+
 
     //GAUSSIAN BLUR FOR SMOOTH IMAGE
     //GaussianBlur(src, blur, Size( 3, 3 ), 0, 0 );
@@ -125,6 +127,8 @@ Mat Vision::filterBlue(Mat src)
     cvtColor(res,res,CV_RGB2GRAY);
 
     threshold(res,res,0,255,CV_THRESH_BINARY);
+
+
 
     return res;
 }
@@ -150,9 +154,12 @@ void Vision::getLenghtFromCenter(Mat src)
     int areaRed,areaBlue;
     int lato = 80;
 
-    double lineTicknessPixel,area,lengthPixel,length;
+    double lineTicknessPixel,lengthPixel,length = 0,cmPerPixel;
+    double max = 0;
 
-    Mat red,blue;
+    Mat red,blue,canny_output;
+    vector<vector<Point> > contours;
+    vector<Vec4i> hierarchy;
     Rect roi;
 
 
@@ -160,7 +167,6 @@ void Vision::getLenghtFromCenter(Mat src)
     roi.y = src.size().height/2 - lato/2;
     roi.width = lato;
     roi.height = lato;
-    area = lato * lato;
 
     red = filterRed(src);
     blue = filterBlue(src);
@@ -169,17 +175,37 @@ void Vision::getLenghtFromCenter(Mat src)
     areaBlue = countNonZero(blue);
 
 
-    lineTicknessPixel = (areaRed / (area) ) * lato;
-
-    lengthPixel = areaBlue / lineTicknessPixel;
-
-    cout<< lengthPixel << endl;
-
-    length = lengthPixel * LINE_TICKNESS / lineTicknessPixel ;
+    lineTicknessPixel = (areaRed / (lato) );
+    cmPerPixel = LINE_TICKNESS / lineTicknessPixel;
 
 
-    cout<< length << endl;
+    /* FIRST ATTEMPT */
+    //lengthPixel = areaBlue / lineTicknessPixel;
+    //length = lengthPixel * cmPerPixel;
+
+
+
+    /* NEW TRY */
+    /// Detect edges using canny
+    //Canny(blue, canny_output, 0, 255, 3 );
+    /// Find contours
+    findContours( blue, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+
+    int perimeter;
+    for( int i = 0; i< contours.size(); i++ )
+         {
+            perimeter = arcLength(contours[i],true);
+            if(perimeter > max){
+                max  = perimeter;
+                length = (perimeter - lineTicknessPixel*2) / 2 * cmPerPixel;
+            }
+         }
+
+
+
+    cout<< "Lunghezza Linea Blue: "<< length << " cm" << endl;
 }
+
 
 
 Mat Vision::addROI(Mat src){
